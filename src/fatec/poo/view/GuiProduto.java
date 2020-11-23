@@ -7,6 +7,7 @@ package fatec.poo.view;
 
 import fatec.poo.model.Produto;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -182,6 +183,15 @@ public class GuiProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        try{
+            Integer.parseInt(txtCod.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Código inválido");
+            txtCod.setText(null);
+            txtCod.requestFocus();
+            return;
+        }
+        
         int x;
         for (x = 0; x < cadastro.size(); x++) {
             if (cadastro.get(x).getCodigo().equals(txtCod.getText())) {
