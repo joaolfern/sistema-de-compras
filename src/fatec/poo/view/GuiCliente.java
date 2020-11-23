@@ -128,6 +128,11 @@ public class GuiCliente extends javax.swing.JFrame {
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Eraser.png"))); // NOI18N
         btnExcluir.setText("Excluir");
@@ -252,11 +257,17 @@ public class GuiCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        if (!cliente.validarCPF(txtCpf.getText())) {
+        try{
+            if (!Pessoa.validarCPF(txtCpf.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF Inválido! Por favor, digite um CPF válido.", "Erro CPF", 2);
+                txtCpf.requestFocus();
+                return;
+            }   
+        }catch(Exception e){
             JOptionPane.showMessageDialog(this, "CPF Inválido! Por favor, digite um CPF válido.", "Erro CPF", 2);
             txtCpf.requestFocus();
             return;
@@ -270,23 +281,23 @@ public class GuiCliente extends javax.swing.JFrame {
         }
 
         if (x < cadastro.size()) {
-            posVendedor = x;
+            posCliente = x;
         } else {
-            posVendedor = -1;
+            posCliente = -1;
         }
 
-        if (posVendedor >= 0) {
-            txtCpf.setText(cadastro.get(posVendedor).getCpf());
-            txtNome.setText(cadastro.get(posVendedor).getNome());
-            txtEndereco.setText(cadastro.get(posVendedor).getEndereço());
-            txtCidade.setText(cadastro.get(posVendedor).getCidade());
-            txtDDD.setText(cadastro.get(posVendedor).getDdd());
-            txtTelefone.setText(cadastro.get(posVendedor).getTelefone());
-            cbxUf.setSelectedIndex(Integer.parseInt(cadastro.get(posVendedor).getUf()));
-            txtLimiteCred.setText(String.valueOf(((Cliente)cadastro.get(posVendedor)).getLimiteCred()));
-            txtLimiteDisp.setText(String.valueOf(((Cliente)cadastro.get(posVendedor)).getLimiteDisp()));
+        if (posCliente >= 0) {
+            txtCpf.setText(cadastro.get(posCliente).getCpf());
+            txtCep.setText(cadastro.get(posCliente).getCep());
+            txtNome.setText(cadastro.get(posCliente).getNome());
+            txtEndereco.setText(cadastro.get(posCliente).getEndereço());
+            txtCidade.setText(cadastro.get(posCliente).getCidade());
+            txtDDD.setText(cadastro.get(posCliente).getDdd());
+            txtTelefone.setText(cadastro.get(posCliente).getTelefone());
+            cbxUf.setSelectedItem(cadastro.get(posCliente).getUf());
+            txtLimiteCred.setText(String.valueOf(((Cliente)cadastro.get(posCliente)).getLimiteCred()));
+            txtLimiteDisp.setText(String.valueOf(((Cliente)cadastro.get(posCliente)).getLimiteDisp()));
 
-            
             btnConsultar.setEnabled(false);
             btnIncluir.setEnabled(false);
             btnAlterar.setEnabled(true);
@@ -323,7 +334,7 @@ public class GuiCliente extends javax.swing.JFrame {
         cliente.setLimiteCred(Double.parseDouble(txtLimiteCred.getText()));
         cliente.setLimiteDisp(Double.parseDouble(txtLimiteDisp.getText()));
         cliente.setTelefone(txtTelefone.getText());
-        cliente.setUf(String.valueOf(cbxUf.getSelectedIndex()));
+        cliente.setUf(cbxUf.getSelectedItem().toString());
         
         cadastro.add(cliente);
         
@@ -356,6 +367,47 @@ public class GuiCliente extends javax.swing.JFrame {
         txtCpf.requestFocus();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        txtCpf.setEnabled(false);
+        cadastro.get(posCliente).setNome(txtNome.getText());
+        cadastro.get(posCliente).setCep(txtCep.getText());
+        cadastro.get(posCliente).setCidade(txtCidade.getText());
+        cadastro.get(posCliente).setDdd(txtDDD.getText());
+        cadastro.get(posCliente).setEndereço(txtEndereco.getText());
+        cadastro.get(posCliente).setTelefone(txtTelefone.getText());
+        cadastro.get(posCliente).setUf(cbxUf.getSelectedItem().toString());
+        ((Cliente)cadastro.get(posCliente)).setLimiteCred(Double.parseDouble(txtLimiteCred.getText()));
+        ((Cliente)cadastro.get(posCliente)).setLimiteDisp(Double.parseDouble(txtLimiteDisp.getText()));
+        
+        txtCep.setText(null);
+        txtCpf.setText(null);
+        txtNome.setText(null);
+        txtCidade.setText(null);
+        txtDDD.setText(null);
+        txtEndereco.setText(null);
+        txtLimiteCred.setText(null);
+        txtLimiteDisp.setText(null);
+        txtTelefone.setText(null);
+        cbxUf.setSelectedIndex(0);
+        
+        txtCep.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtCidade.setEnabled(false);
+        txtDDD.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtLimiteCred.setEnabled(false);
+        txtLimiteDisp.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        cbxUf.setEnabled(false);
+        
+        btnConsultar.setEnabled(true);
+        btnIncluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtCpf.setEnabled(true);
+        txtCpf.requestFocus();     
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -387,6 +439,5 @@ public class GuiCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
     private ArrayList<Pessoa> cadastro;
-    private Cliente cliente = null;
-    private int posVendedor;
+    private int posCliente;
 }

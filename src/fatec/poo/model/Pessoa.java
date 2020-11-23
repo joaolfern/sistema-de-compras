@@ -20,6 +20,18 @@ public class Pessoa {
         this.pedidos = new ArrayList<Pedido>();
     }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPedidos(ArrayList<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
     public String getEndereço() {
         return endereço;
     }

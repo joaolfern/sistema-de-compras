@@ -106,6 +106,11 @@ public class GuiProduto extends javax.swing.JFrame {
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -258,6 +263,33 @@ public class GuiProduto extends javax.swing.JFrame {
         txtCod.setEnabled(true);
         txtCod.requestFocus();
     }//GEN-LAST:event_btnIncluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        txtCod.setEnabled(false);
+        
+        cadastro.get(posProduto).setEstoqueMinimo(Double.parseDouble(txtEstoqueMin.getText()));
+        cadastro.get(posProduto).setPreco(Double.parseDouble(txtPrecoUnitario.getText()));
+        cadastro.get(posProduto).setQtdeEstoque(Double.parseDouble(txtQtdDisponivel.getText()));
+        cadastro.get(posProduto).setPreco(Double.parseDouble(txtPrecoUnitario.getText()));
+        cadastro.get(posProduto).setDescricao(txtDescricao.getText());
+        
+        txtCod.setText(null);
+        txtDescricao.setText(null);
+        txtEstoqueMin.setText(null);
+        txtPrecoUnitario.setText(null);
+        txtQtdDisponivel.setText(null);
+        
+        txtDescricao.setEnabled(false);
+        txtEstoqueMin.setEnabled(false);
+        txtPrecoUnitario.setEnabled(false);
+        txtQtdDisponivel.setEnabled(false);
+        btnConsultar.setEnabled(true);
+        btnIncluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtCod.setEnabled(true);
+        txtCod.requestFocus();
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
      * @param args the command line arguments

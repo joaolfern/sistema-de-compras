@@ -104,6 +104,11 @@ public class GuiVendedor extends javax.swing.JFrame {
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Endereço");
@@ -266,7 +271,13 @@ public class GuiVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        if (!Vendedor.validarCPF(txtCpf.getText())) {
+        try{
+            if (!Pessoa.validarCPF(txtCpf.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF Inválido! Por favor, digite um CPF válido.", "Erro CPF", 2);
+                txtCpf.requestFocus();
+                return;
+            }   
+        }catch(Exception e){
             JOptionPane.showMessageDialog(this, "CPF Inválido! Por favor, digite um CPF válido.", "Erro CPF", 2);
             txtCpf.requestFocus();
             return;
@@ -287,6 +298,7 @@ public class GuiVendedor extends javax.swing.JFrame {
 
         if (posVendedor >= 0) {
             txtCpf.setText(cadastro.get(posVendedor).getCpf());
+            txtCep.setText(cadastro.get(posVendedor).getCep());
             txtNome.setText(cadastro.get(posVendedor).getNome());
             txtEndereco.setText(cadastro.get(posVendedor).getEndereço());
             txtCidade.setText(cadastro.get(posVendedor).getCidade());
@@ -294,7 +306,7 @@ public class GuiVendedor extends javax.swing.JFrame {
             txtTelefone.setText(cadastro.get(posVendedor).getTelefone());
             cbxUf.setSelectedItem(cadastro.get(posVendedor).getUf());
             txtSalarioBase.setText(String.valueOf(((Vendedor) cadastro.get(posVendedor)).getSalarioBase()));
-            txtSalarioBase.setText(String.valueOf(((Vendedor) cadastro.get(posVendedor)).getTaxaComissao()));
+            txtTaxaComissao.setText(String.valueOf(((Vendedor) cadastro.get(posVendedor)).getTaxaComissao()));
 
             btnConsultar.setEnabled(false);
             btnIncluir.setEnabled(false);
@@ -332,7 +344,7 @@ public class GuiVendedor extends javax.swing.JFrame {
         vendedor.setSalarioBase(Double.parseDouble(txtSalarioBase.getText()));
         vendedor.setTaxaComissao(Double.parseDouble(txtTaxaComissao.getText()));
         vendedor.setTelefone(txtTelefone.getText());
-        vendedor.setUf(String.valueOf(cbxUf.getSelectedIndex()));
+        vendedor.setUf(cbxUf.getSelectedItem().toString());
         
         cadastro.add(vendedor);
         
@@ -364,6 +376,47 @@ public class GuiVendedor extends javax.swing.JFrame {
         txtCpf.setEnabled(true);
         txtCpf.requestFocus();
     }//GEN-LAST:event_btnIncluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        txtCpf.setEnabled(false);
+        cadastro.get(posVendedor).setNome(txtNome.getText());
+        cadastro.get(posVendedor).setCep(txtCep.getText());
+        cadastro.get(posVendedor).setCidade(txtCidade.getText());
+        cadastro.get(posVendedor).setDdd(txtDDD.getText());
+        cadastro.get(posVendedor).setEndereço(txtEndereco.getText());
+        cadastro.get(posVendedor).setTelefone(txtTelefone.getText());
+        cadastro.get(posVendedor).setUf(cbxUf.getSelectedItem().toString());
+        ((Vendedor)cadastro.get(posVendedor)).setSalarioBase(Double.parseDouble(txtSalarioBase.getText()));
+        ((Vendedor)cadastro.get(posVendedor)).setTaxaComissao(Double.parseDouble(txtTaxaComissao.getText()));
+        
+        txtCep.setText(null);
+        txtCpf.setText(null);
+        txtNome.setText(null);
+        txtCidade.setText(null);
+        txtDDD.setText(null);
+        txtEndereco.setText(null);
+        txtSalarioBase.setText(null);
+        txtTaxaComissao.setText(null);
+        txtTelefone.setText(null);
+        cbxUf.setSelectedIndex(0);
+        
+        txtCep.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtCidade.setEnabled(false);
+        txtDDD.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtSalarioBase.setEnabled(false);
+        txtTaxaComissao.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        cbxUf.setEnabled(false);
+        
+        btnConsultar.setEnabled(true);
+        btnIncluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtCpf.setEnabled(true);
+        txtCpf.requestFocus();    
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
      * @param args the command line arguments
