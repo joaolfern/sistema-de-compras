@@ -90,6 +90,11 @@ public class GuiVendedor extends javax.swing.JFrame {
         btnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add.png"))); // NOI18N
         btnIncluir.setText("Incluir");
         btnIncluir.setEnabled(false);
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Nome");
@@ -311,8 +316,54 @@ public class GuiVendedor extends javax.swing.JFrame {
         txtCep.setEnabled(true);
         txtSalarioBase.setEnabled(true);
         txtTaxaComissao.setEnabled(true);
-
+        cbxUf.setEnabled(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+            Vendedor vendedor = new Vendedor(
+            txtCpf.getText(),
+            txtNome.getText(),
+            Double.parseDouble(txtSalarioBase.getText())
+        );
+        vendedor.setCep(txtCep.getText());
+        vendedor.setCidade(txtCidade.getText());
+        vendedor.setDdd(txtDDD.getText());
+        vendedor.setEndereço(txtEndereco.getText());
+        vendedor.setSalarioBase(Double.parseDouble(txtSalarioBase.getText()));
+        vendedor.setTaxaComissao(Double.parseDouble(txtTaxaComissao.getText()));
+        vendedor.setTelefone(txtTelefone.getText());
+        vendedor.setUf(String.valueOf(cbxUf.getSelectedIndex()));
+        
+        cadastro.add(vendedor);
+        
+        txtCep.setText(null);
+        txtCpf.setText(null);
+        txtNome.setText(null);
+        txtCidade.setText(null);
+        txtDDD.setText(null);
+        txtEndereco.setText(null);
+        txtSalarioBase.setText(null);
+        txtTaxaComissao.setText(null);
+        txtTelefone.setText(null);
+        cbxUf.setSelectedIndex(0);
+        
+        txtCep.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtCidade.setEnabled(false);
+        txtDDD.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtSalarioBase.setEnabled(false);
+        txtTaxaComissao.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        cbxUf.setEnabled(false);
+        
+        btnConsultar.setEnabled(true);
+        btnIncluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtCpf.setEnabled(true);
+        txtCpf.requestFocus();
+    }//GEN-LAST:event_btnIncluirActionPerformed
 
     /**
      * @param args the command line arguments

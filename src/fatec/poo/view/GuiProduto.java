@@ -246,6 +246,7 @@ public class GuiProduto extends javax.swing.JFrame {
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
         txtCod.setEnabled(true);
+        txtCod.requestFocus();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     /**

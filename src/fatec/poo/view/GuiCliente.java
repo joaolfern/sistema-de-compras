@@ -119,6 +119,11 @@ public class GuiCliente extends javax.swing.JFrame {
         btnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add.png"))); // NOI18N
         btnIncluir.setText("Incluir");
         btnIncluir.setEnabled(false);
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Alterar.png"))); // NOI18N
         btnAlterar.setText("Alterar");
@@ -259,10 +264,8 @@ public class GuiCliente extends javax.swing.JFrame {
 
         int x;
         for (x = 0; x < cadastro.size(); x++) {
-            if (cadastro.get(x) instanceof Cliente) {
-                if (((Cliente) cadastro.get(x)).getCpf().equals(txtCpf.getText())) {
-                    break;
-                }
+            if (cadastro.get(x).getCpf().equals(txtCpf.getText())) {
+                break;
             }
         }
 
@@ -279,7 +282,7 @@ public class GuiCliente extends javax.swing.JFrame {
             txtCidade.setText(cadastro.get(posVendedor).getCidade());
             txtDDD.setText(cadastro.get(posVendedor).getDdd());
             txtTelefone.setText(cadastro.get(posVendedor).getTelefone());
-            cbxUf.setSelectedItem(cadastro.get(posVendedor).getUf());
+            cbxUf.setSelectedIndex(Integer.parseInt(cadastro.get(posVendedor).getUf()));
             txtLimiteCred.setText(String.valueOf(((Cliente)cadastro.get(posVendedor)).getLimiteCred()));
             txtLimiteDisp.setText(String.valueOf(((Cliente)cadastro.get(posVendedor)).getLimiteDisp()));
 
@@ -304,7 +307,54 @@ public class GuiCliente extends javax.swing.JFrame {
         txtCep.setEnabled(true);
         txtLimiteCred.setEnabled(true);
         txtLimiteDisp.setEnabled(true);
+        cbxUf.setEnabled(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+        Cliente cliente = new Cliente(
+            Double.parseDouble(txtLimiteCred.getText()),
+            txtCpf.getText(),
+            txtNome.getText()
+        );
+        cliente.setCep(txtCep.getText());
+        cliente.setCidade(txtCidade.getText());
+        cliente.setDdd(txtDDD.getText());
+        cliente.setEndereço(txtEndereco.getText());
+        cliente.setLimiteCred(Double.parseDouble(txtLimiteCred.getText()));
+        cliente.setLimiteDisp(Double.parseDouble(txtLimiteDisp.getText()));
+        cliente.setTelefone(txtTelefone.getText());
+        cliente.setUf(String.valueOf(cbxUf.getSelectedIndex()));
+        
+        cadastro.add(cliente);
+        
+        txtCep.setText(null);
+        txtCpf.setText(null);
+        txtNome.setText(null);
+        txtCidade.setText(null);
+        txtDDD.setText(null);
+        txtEndereco.setText(null);
+        txtLimiteCred.setText(null);
+        txtLimiteDisp.setText(null);
+        txtTelefone.setText(null);
+        cbxUf.setSelectedIndex(0);
+        
+        txtCep.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtCidade.setEnabled(false);
+        txtDDD.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtLimiteCred.setEnabled(false);
+        txtLimiteDisp.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        cbxUf.setEnabled(false);
+        
+        btnConsultar.setEnabled(true);
+        btnIncluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtCpf.setEnabled(true);
+        txtCpf.requestFocus();
+    }//GEN-LAST:event_btnIncluirActionPerformed
 
     /**
      * @param args the command line arguments
