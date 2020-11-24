@@ -107,4 +107,11 @@ public class Pedido {
         return vendedor;
     }
 
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }

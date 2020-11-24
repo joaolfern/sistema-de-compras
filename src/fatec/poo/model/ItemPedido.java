@@ -5,6 +5,7 @@ public class ItemPedido {
     private int sequencia;
     private double qtdeVendida;
     private Produto produto;
+    private Pedido pedido;
 
     public ItemPedido(int sequencia, double qtdeVendida, Produto produto) {
         this.sequencia = sequencia;
@@ -33,4 +34,8 @@ public class ItemPedido {
         return produto;
     }
 
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+    
 }

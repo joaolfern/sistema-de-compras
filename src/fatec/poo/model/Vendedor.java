@@ -14,6 +14,11 @@ public class Vendedor extends Pessoa {
         this.pedidos = new ArrayList<Pedido>();
     }
 
+    public void addPedido(Pedido pedido){
+        pedidos.add(pedido);
+        pedido.setVendedor(this);
+    }
+    
     public double getSalarioBase() {
         return salarioBase;
     }
@@ -23,7 +28,7 @@ public class Vendedor extends Pessoa {
     }
 
     public double getTaxaComissao() {
-        return taxaComissao;
+        return (taxaComissao * 100);
     }
 
     public void setTaxaComissao(double taxaComissao) {

@@ -22,6 +22,7 @@ public class GuiCliente extends javax.swing.JFrame {
     public GuiCliente(ArrayList<Pessoa> cadCliVend) {
         initComponents();
         this.cadastro = cadCliVend;
+        cbxUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
     }
 
     public void prepararNovaEntrada(){
