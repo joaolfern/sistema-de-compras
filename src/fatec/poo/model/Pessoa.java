@@ -131,27 +131,19 @@ public class Pessoa {
         //calculo do digito verificador
         for (int index = 1; index < CPF.length() - 1; index++)
         {
-           digitoCPF = Integer.valueOf (CPF.substring(index -1, index)).intValue();
+           digitoCPF = Integer.parseInt(CPF.substring(index -1, index));
            d1 = d1 + ( index ) * digitoCPF;
-        };
+           d2 = d2 + ( 12 - index ) * digitoCPF;
+        }
         resto = (d1 % 11);
         if (resto == 10)
            digito1 = 0;
         else
            digito1 = resto;
         
-       
-        //digito 2
-         d1=0;
-        for (int index = 1; index < CPF.length() -1; index++)
-        {
-           digitoCPF = Integer.valueOf (CPF.substring(index -1, index)).intValue();
-           d1 = d1 + ( 11 - index ) * digitoCPF;
-           //d2 = d2 + ( 12 - index ) * digitoCPF;
-        };
-        d2 += 2 * digito1;
+        d2 = d2 + 2 * digito1;
         
-        resto = (d1*10)%11;
+        resto = (d2*10)%11;
         
         if (resto == 10)
            digito2 = 0;
