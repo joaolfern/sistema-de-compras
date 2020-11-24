@@ -24,6 +24,35 @@ public class GuiVendedor extends javax.swing.JFrame {
         this.cadastro = cadCliVend;
     }
 
+        public void prepararNovaEntrada(){
+        txtCep.setText(null);
+        txtCpf.setText(null);
+        txtNome.setText(null);
+        txtCidade.setText(null);
+        txtDDD.setText(null);
+        txtEndereco.setText(null);
+        txtSalarioBase.setText(null);
+        txtTaxaComissao.setText(null);
+        txtTelefone.setText(null);
+        cbxUf.setSelectedIndex(0);
+        
+        txtCep.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtCidade.setEnabled(false);
+        txtDDD.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtSalarioBase.setEnabled(false);
+        txtTaxaComissao.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        cbxUf.setEnabled(false);
+        
+        btnConsultar.setEnabled(true);
+        btnIncluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtCpf.setEnabled(true);
+        txtCpf.requestFocus();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,6 +148,11 @@ public class GuiVendedor extends javax.swing.JFrame {
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Eraser.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         txtTelefone.setEnabled(false);
 
@@ -348,33 +382,7 @@ public class GuiVendedor extends javax.swing.JFrame {
         
         cadastro.add(vendedor);
         
-        txtCep.setText(null);
-        txtCpf.setText(null);
-        txtNome.setText(null);
-        txtCidade.setText(null);
-        txtDDD.setText(null);
-        txtEndereco.setText(null);
-        txtSalarioBase.setText(null);
-        txtTaxaComissao.setText(null);
-        txtTelefone.setText(null);
-        cbxUf.setSelectedIndex(0);
-        
-        txtCep.setEnabled(false);
-        txtNome.setEnabled(false);
-        txtCidade.setEnabled(false);
-        txtDDD.setEnabled(false);
-        txtEndereco.setEnabled(false);
-        txtSalarioBase.setEnabled(false);
-        txtTaxaComissao.setEnabled(false);
-        txtTelefone.setEnabled(false);
-        cbxUf.setEnabled(false);
-        
-        btnConsultar.setEnabled(true);
-        btnIncluir.setEnabled(false);
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-        txtCpf.setEnabled(true);
-        txtCpf.requestFocus();
+        prepararNovaEntrada();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -389,34 +397,17 @@ public class GuiVendedor extends javax.swing.JFrame {
         ((Vendedor)cadastro.get(posVendedor)).setSalarioBase(Double.parseDouble(txtSalarioBase.getText()));
         ((Vendedor)cadastro.get(posVendedor)).setTaxaComissao(Double.parseDouble(txtTaxaComissao.getText()));
         
-        txtCep.setText(null);
-        txtCpf.setText(null);
-        txtNome.setText(null);
-        txtCidade.setText(null);
-        txtDDD.setText(null);
-        txtEndereco.setText(null);
-        txtSalarioBase.setText(null);
-        txtTaxaComissao.setText(null);
-        txtTelefone.setText(null);
-        cbxUf.setSelectedIndex(0);
-        
-        txtCep.setEnabled(false);
-        txtNome.setEnabled(false);
-        txtCidade.setEnabled(false);
-        txtDDD.setEnabled(false);
-        txtEndereco.setEnabled(false);
-        txtSalarioBase.setEnabled(false);
-        txtTaxaComissao.setEnabled(false);
-        txtTelefone.setEnabled(false);
-        cbxUf.setEnabled(false);
-        
-        btnConsultar.setEnabled(true);
-        btnIncluir.setEnabled(false);
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-        txtCpf.setEnabled(true);
-        txtCpf.requestFocus();    
+        prepararNovaEntrada();
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+    int dialog = JOptionPane.showConfirmDialog(null, "Excluir registro?", "Confirmar", 0);
+    
+    if(dialog == 0){
+        cadastro.remove(posVendedor);
+        prepararNovaEntrada();
+    }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments

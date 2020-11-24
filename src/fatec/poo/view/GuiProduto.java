@@ -23,6 +23,24 @@ public class GuiProduto extends javax.swing.JFrame {
         cadastro = cadProd;
     }
 
+    public void prepararNovaEntrada(){
+        txtCod.setText(null);
+        txtDescricao.setText(null);
+        txtEstoqueMin.setText(null);
+        txtPrecoUnitario.setText(null);
+        txtQtdDisponivel.setText(null);
+        
+        txtDescricao.setEnabled(false);
+        txtEstoqueMin.setEnabled(false);
+        txtPrecoUnitario.setEnabled(false);
+        txtQtdDisponivel.setEnabled(false);
+        btnConsultar.setEnabled(true);
+        btnIncluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtCod.setEnabled(true);
+        txtCod.requestFocus();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,6 +95,11 @@ public class GuiProduto extends javax.swing.JFrame {
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Eraser.png"))); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pesq.png"))); // NOI18N
         btnConsultar.setText("Consultar");
@@ -246,22 +269,7 @@ public class GuiProduto extends javax.swing.JFrame {
         
         cadastro.add(produto);
         
-        txtCod.setText(null);
-        txtDescricao.setText(null);
-        txtEstoqueMin.setText(null);
-        txtPrecoUnitario.setText(null);
-        txtQtdDisponivel.setText(null);
-        
-        txtDescricao.setEnabled(false);
-        txtEstoqueMin.setEnabled(false);
-        txtPrecoUnitario.setEnabled(false);
-        txtQtdDisponivel.setEnabled(false);
-        btnConsultar.setEnabled(true);
-        btnIncluir.setEnabled(false);
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-        txtCod.setEnabled(true);
-        txtCod.requestFocus();
+        prepararNovaEntrada();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -273,23 +281,17 @@ public class GuiProduto extends javax.swing.JFrame {
         cadastro.get(posProduto).setPreco(Double.parseDouble(txtPrecoUnitario.getText()));
         cadastro.get(posProduto).setDescricao(txtDescricao.getText());
         
-        txtCod.setText(null);
-        txtDescricao.setText(null);
-        txtEstoqueMin.setText(null);
-        txtPrecoUnitario.setText(null);
-        txtQtdDisponivel.setText(null);
-        
-        txtDescricao.setEnabled(false);
-        txtEstoqueMin.setEnabled(false);
-        txtPrecoUnitario.setEnabled(false);
-        txtQtdDisponivel.setEnabled(false);
-        btnConsultar.setEnabled(true);
-        btnIncluir.setEnabled(false);
-        btnAlterar.setEnabled(false);
-        btnExcluir.setEnabled(false);
-        txtCod.setEnabled(true);
-        txtCod.requestFocus();
+        prepararNovaEntrada();
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+    int dialog = JOptionPane.showConfirmDialog(null, "Excluir registro?", "Confirmar", 0);
+    
+    if(dialog == 0){
+        cadastro.remove(posProduto);
+        prepararNovaEntrada();
+    }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
