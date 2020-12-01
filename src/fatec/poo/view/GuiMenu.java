@@ -5,6 +5,7 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.model.Pedido;
 import fatec.poo.model.Pessoa;
 import fatec.poo.model.Produto;
 import java.util.ArrayList;
@@ -129,7 +130,7 @@ public class GuiMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     private void jMenuItemEmitirPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEmitirPedidoActionPerformed
-        new GuiEmitirPedido().setVisible(true);
+        new GuiEmitirPedido(cadPedido, cadCliVend, cadProd).setVisible(true);
     }//GEN-LAST:event_jMenuItemEmitirPedidoActionPerformed
 
     /**
@@ -182,6 +183,6 @@ public class GuiMenu extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 private ArrayList<Pessoa> cadCliVend = new ArrayList<Pessoa>();
 private ArrayList<Produto> cadProd = new ArrayList<Produto>();
-    
+private ArrayList<Pedido> cadPedido = new ArrayList<Pedido>();
     
 }

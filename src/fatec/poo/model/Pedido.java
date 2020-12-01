@@ -14,11 +14,9 @@ public class Pedido {
     private ArrayList<ItemPedido> itens;
     private double total;
     
-    public Pedido(String numero, String dataEmissao, Cliente cliente, Vendedor vendedor) {
+    public Pedido(String numero, String dataEmissao) {
         this.numero = numero;
         this.dataEmissao = dataEmissao;
-        this.cliente = cliente;
-        this.vendedor = vendedor;
         this.itens = new ArrayList<ItemPedido>();
         this.total = 0;
         
@@ -47,16 +45,8 @@ public class Pedido {
         
     }*/
     
-    public String listarItens(){
-        String list = "";
-
-        for (int i = 0; i < itens.size(); i++) {
-            list = list + " " + itens.get(i).getProduto().getDescricao()
-                + " " + itens.get(i).getQtdeVendida()
-                + itens.get(i).getProduto().getUnidadeMedida();
-        }
-
-        return list;
+    public ArrayList<ItemPedido> listarItens(){
+        return itens;
     }
     
     public double getTotal(){
