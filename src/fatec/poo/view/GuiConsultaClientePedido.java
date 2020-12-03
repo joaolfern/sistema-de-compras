@@ -219,7 +219,7 @@ public class GuiConsultaClientePedido extends javax.swing.JFrame {
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         int qtdPedidos = cadCliVend.get(posicao).listarPedido().size();
         double total = 0;
-        DecimalFormat formato = new DecimalFormat("###0.00");
+        DecimalFormat formato = new DecimalFormat("#,##0.00");
         
         if(qtdPedidos == 0){
             JOptionPane.showMessageDialog(this, "Não há ocorrência de pedidos", "Erro cliente", 2);

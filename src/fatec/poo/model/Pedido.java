@@ -20,7 +20,7 @@ public class Pedido {
         this.itens = new ArrayList<ItemPedido>();
         this.total = 0;
     }
-
+    
     public void addItens(ArrayList<ItemPedido> itens) {
         this.itens.addAll(itens);
     }

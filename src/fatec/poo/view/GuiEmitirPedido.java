@@ -598,6 +598,12 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcurarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarPedidoActionPerformed
+        if(txtNumPedido.getText().length() == 0){
+            JOptionPane.showMessageDialog(this, "Código inválido", "Erro código", 2);
+            txtNumPedido.requestFocus();
+            return;
+        }
+        
         DecimalFormat formato = new DecimalFormat("#0.00");
         double total = 0;
         int quantidade = 0;
