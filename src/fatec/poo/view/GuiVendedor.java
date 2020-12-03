@@ -36,9 +36,13 @@ public class GuiVendedor extends javax.swing.JFrame {
         txtTaxaComissao.setText(null);
         txtTelefone.setText(null);
         cbxUf.setSelectedIndex(0);
+        rbtnFeminino.setSelected(false);
+        rbtnMasculino.setSelected(false);
         
         txtCep.setEnabled(false);
         txtNome.setEnabled(false);
+        rbtnFeminino.setEnabled(false);
+        rbtnMasculino.setEnabled(false);
         txtCidade.setEnabled(false);
         txtDDD.setEnabled(false);
         txtEndereco.setEnabled(false);
@@ -46,7 +50,7 @@ public class GuiVendedor extends javax.swing.JFrame {
         txtTaxaComissao.setEnabled(false);
         txtTelefone.setEnabled(false);
         cbxUf.setEnabled(false);
-        
+
         btnConsultar.setEnabled(true);
         btnIncluir.setEnabled(false);
         btnAlterar.setEnabled(false);
@@ -200,6 +204,7 @@ public class GuiVendedor extends javax.swing.JFrame {
 
         buttonGroup1.add(rbtnFeminino);
         rbtnFeminino.setText("Feminino");
+        rbtnFeminino.setEnabled(false);
         rbtnFeminino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnFemininoActionPerformed(evt);
@@ -207,8 +212,8 @@ public class GuiVendedor extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(rbtnMasculino);
-        rbtnMasculino.setSelected(true);
         rbtnMasculino.setText("Masculino");
+        rbtnMasculino.setEnabled(false);
         rbtnMasculino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnMasculinoActionPerformed(evt);
@@ -425,6 +430,9 @@ public class GuiVendedor extends javax.swing.JFrame {
         txtSalarioBase.setEnabled(true);
         txtTaxaComissao.setEnabled(true);
         cbxUf.setEnabled(true);
+        rbtnFeminino.setEnabled(true);
+        rbtnMasculino.setEnabled(true);
+        rbtnMasculino.setSelected(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed

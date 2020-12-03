@@ -24,6 +24,10 @@ public class Pedido {
     public void addItens(ArrayList<ItemPedido> itens) {
         this.itens.addAll(itens);
     }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
     
     public ArrayList<ItemPedido> listarItens(){
         return itens;

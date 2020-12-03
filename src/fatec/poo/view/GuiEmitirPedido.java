@@ -838,6 +838,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         pedido.setCliente((Cliente)cadCliVend.get(posCliente));
         pedido.setVendedor((Vendedor)cadCliVend.get(posVendedor));
         pedido.setSituacao(true);
+        pedido.setTotal(totalPedido);
         
         pedido.addItens(cadItens);
         //adicionar pedido e vendendor

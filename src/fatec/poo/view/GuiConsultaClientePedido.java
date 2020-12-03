@@ -181,7 +181,15 @@ public class GuiConsultaClientePedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarActionPerformed
-       try{
+
+        if(cadCliVend.size() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Nenhum cliente cadastrado", "Erro cliente", 2);
+            return;
+        }
+            
+        
+        
         for(posicao = 0; posicao < cadCliVend.size(); posicao ++) {
            if(cadCliVend.get(posicao).getCpf().equals(txtCpf.getValue()))
                break;
@@ -192,11 +200,7 @@ public class GuiConsultaClientePedido extends javax.swing.JFrame {
                 return;
             }       
         }   
-       }catch(Exception e){
-           JOptionPane.showMessageDialog(this, "Cliente não cadastrado", "Erro cliente", 2);
-            txtCpf.requestFocus();
-            return;
-       }
+
 
             txtCpf.setEnabled(false);
             btnProcurar.setEnabled(false);
@@ -215,7 +219,7 @@ public class GuiConsultaClientePedido extends javax.swing.JFrame {
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         int qtdPedidos = cadCliVend.get(posicao).listarPedido().size();
         double total = 0;
-        DecimalFormat formato = new DecimalFormat("###0,00");
+        DecimalFormat formato = new DecimalFormat("###0.00");
         
         if(qtdPedidos == 0){
             JOptionPane.showMessageDialog(this, "Não há ocorrência de pedidos", "Erro cliente", 2);
@@ -230,7 +234,7 @@ public class GuiConsultaClientePedido extends javax.swing.JFrame {
         txtQtdPedido.setText(String.valueOf(qtdPedidos));
 
 
-        txtTotalPedidos.setText(formato.format(total));
+        txtTotalPedidos.setText(String.valueOf(total));
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
