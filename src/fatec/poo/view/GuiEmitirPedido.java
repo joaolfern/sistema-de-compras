@@ -49,6 +49,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         rbtnAVista.setEnabled(true);
         txtCpfCliente.setEnabled(true);
         btnProcurarCliente.setEnabled(true);
+        txtData.requestFocus();
     }
     
     private void preperarPedidoExistente(){ 
@@ -158,17 +159,15 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(rbtnAVista)
-                .addGap(62, 62, 62)
-                .addComponent(rbtnAPrazo))
+                .addGap(26, 26, 26)
+                .addComponent(rbtnAPrazo)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnAVista)
-                    .addComponent(rbtnAPrazo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(rbtnAPrazo)
+                .addComponent(rbtnAVista))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -205,7 +204,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGap(77, 77, 77))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Cliente"));
@@ -255,7 +254,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnProcurarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados Vendedor"));
@@ -305,7 +304,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txtNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnProcurarVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Itens do Pedido"));
@@ -363,10 +362,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
 
         tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Descrição", "Prec. Unit.", "Qtde. Vendida", "Subtotal"
@@ -409,23 +405,19 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                         .addComponent(btnRemover)
                         .addGap(105, 105, 105))))
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(788, 788, 788)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtQtdItens, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtValorTotalPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1042, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1042, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtValorTotalPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtQtdItens, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,11 +441,10 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtValorTotalPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtQtdItens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtValorTotalPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(txtQtdItens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(89, 89, 89))
         );
 
@@ -539,6 +530,15 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcurarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarPedidoActionPerformed
+        try{
+            Integer.parseInt(txtNumPedido.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Número de pedido inválido");
+            txtNumPedido.setText(null);
+            txtNumPedido.requestFocus();
+            return;
+        }
+        
         DecimalFormat formato = new DecimalFormat("#0.00");
         double total = 0;
         int quantidade = 0;
@@ -550,18 +550,18 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             }
         }
         
-        prepararPedidio();
-        
         if (x < cadastro.size()) {
             posPedido = x;
         } else {
             posPedido = -1;
         }
         
+        prepararPedidio();
+        
         if(posPedido >= 0){
             preperarPedidoExistente();
-            txtData.setText(cadastro.get(x).getDataEmissao());
-            if(cadastro.get(x).isFormaPagto()){
+            txtData.setText(cadastro.get(posPedido).getDataEmissao());
+            if(cadastro.get(posPedido).isFormaPagto()){
                 rbtnAVista.setSelected(true);
             }else{
                 rbtnAPrazo.setSelected(true);
@@ -668,11 +668,11 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             return;
         }
         
-        Double total = 0.0;
-        total = cadProduto.get(posProduto).getPreco() * Integer.parseInt(txtQtdVendida.getText());
+        double total = cadProduto.get(posProduto).getPreco() * Integer.parseInt(txtQtdVendida.getText());
+        int quantidade = Integer.parseInt(txtQtdVendida.getText());
         
         if(total > ((Cliente)cadCliVend.get(posCliente)).getLimiteDisp()){
-            JOptionPane.showMessageDialog(this, "Saldo insuficiente", "Erro quantidade", 2);
+            JOptionPane.showMessageDialog(this, "Saldo insuficiente", "Erro adição de item", 2);
             txtQtdVendida.requestFocus();
             return;
         }
@@ -682,6 +682,11 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             - total
         );
         
+        cadProduto.get(posProduto).setQtdeEstoque(
+            cadProduto.get(posProduto).getQtdeEstoque()
+            - Integer.parseInt(txtQtdVendida.getText())
+        );
+        
         String linha [] = {
             String.valueOf(cadProduto.get(posProduto).getCodigo()),
             String.valueOf(cadProduto.get(posProduto).getDescricao()),
@@ -689,13 +694,49 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             txtQtdVendida.getText(),
             String.valueOf(total)
         };
-            //terminar de por na tabela
-            //baixar quantidade do estoque
         
+        modTblPedido.addRow(linha);
+        totalPedido += total;
+        qtdPedido += quantidade;
+        txtValorTotalPedido.setText(String.valueOf(totalPedido));
+        txtQtdItens.setText(String.valueOf(qtdPedido));
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        //restaurar quantidade e credito do cliente
+        int rowToBeRemoved = tblPedidos.getSelectedRow();
+        int posProduto;
+        
+        if(rowToBeRemoved < 0)
+            JOptionPane.showMessageDialog(this, "Item não selecionado", "Erro de remoção", 2);
+        else {
+            int qtdVendida = Integer.parseInt(modTblPedido.getValueAt(rowToBeRemoved, 3).toString());
+            double subtotal = Double.parseDouble(modTblPedido.getValueAt(rowToBeRemoved, 4).toString());
+            
+            String numPedido = modTblPedido.getValueAt(rowToBeRemoved, 0).toString();
+            
+            for(posProduto = 0; posProduto < cadProduto.size(); posProduto++){
+                if(cadProduto.get(posProduto).getCodigo() == numPedido)
+                break;
+            }
+            
+            cadProduto.get(posProduto).setQtdeEstoque(
+                cadProduto.get(posProduto).getQtdeEstoque()
+                + qtdVendida
+            );
+            
+            ((Cliente)cadCliVend.get(posCliente)).setLimiteDisp(
+                ((Cliente)cadCliVend.get(posCliente)).getLimiteDisp()
+                + subtotal
+            );
+            
+            modTblPedido.removeRow(rowToBeRemoved);
+            
+            totalPedido -= subtotal;
+            qtdPedido -= qtdVendida;
+            
+            txtValorTotalPedido.setText(String.valueOf(subtotal));
+            txtQtdItens.setText(String.valueOf(qtdPedido));
+        }
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -725,6 +766,11 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         txtNomeVendedor.setText(cadCliVend.get(posVendedor).getNome());
         //adicionar pedido e vendendor
         
+        ((Vendedor)cadCliVend.get(posVendedor)).setSalarioBase(
+            ((Vendedor)cadCliVend.get(posVendedor)).getTaxaComissao()
+            * totalPedido
+        );
+        
         cadastro.add(pedido);
     }//GEN-LAST:event_btnIncluirActionPerformed
 
@@ -736,7 +782,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             Date data = format.parse(txtData.getText());
             
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Data errada", "Erro cliente", 2);
+            JOptionPane.showMessageDialog(this, "Data errada", "Erro pedido", 2);
         }
         
         
@@ -794,4 +840,5 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     private int posPedido;
     private DefaultTableModel modTblPedido;
     private int posCliente, posVendedor, posProduto;
+    private double totalPedido = 0, qtdPedido = 0;
 }
