@@ -10,7 +10,9 @@ import fatec.poo.model.Pedido;
 import fatec.poo.model.Pessoa;
 import fatec.poo.model.Produto;
 import fatec.poo.model.Vendedor;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,18 +41,30 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         modTblPedido = (DefaultTableModel)tblPedidos.getModel();
     }
 
-    private void preperarPedidoExistente(){       
-        txtCodProduto.setEnabled(false);
+    private void prepararPedidio(){
+        txtNumPedido.setEnabled(false);
         btnProcurarPedido.setEnabled(false);
         txtData.setEnabled(true);
         rbtnAPrazo.setEnabled(true);
         rbtnAVista.setEnabled(true);
+        txtCpfCliente.setEnabled(true);
+        btnProcurarCliente.setEnabled(true);
+    }
+    
+    private void preperarPedidoExistente(){ 
+        txtCodProduto.setEnabled(true);
         
+        txtCpfVendedor.setEnabled(true);
+        btnProcurarVendedor.setEnabled(true);
         txtCodProduto.setEnabled(true);
         btnProcurarProduto.setEnabled(true);
         btnAlterar.setEnabled(true);
         btnExcluir.setEnabled(true);
         btnIncluir.setEnabled(false);
+    }
+    
+    private void prepararNovoPedido(){
+        txtNumPedido.setEnabled(rootPaneCheckingEnabled);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,6 +136,11 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtData.setEnabled(false);
+        txtData.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDataFocusLost(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Forma de Pagamento"));
 
@@ -308,6 +327,11 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         jLabel7.setText("Qtde Vendida");
 
         txtQtdVendida.setEnabled(false);
+        txtQtdVendida.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtQtdVendidaFocusLost(evt);
+            }
+        });
 
         jLabel8.setText("Valor total do pedido");
 
@@ -420,9 +444,9 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtValorTotalPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -430,7 +454,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtQtdItens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                .addGap(89, 89, 89))
         );
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/exit.png"))); // NOI18N
@@ -489,26 +513,26 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSair)
                     .addComponent(btnIncluir)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -525,6 +549,8 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 break;
             }
         }
+        
+        prepararPedidio();
         
         if (x < cadastro.size()) {
             posPedido = x;
@@ -558,6 +584,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 };
                 total += cadastro.get(x).listarItens().get(i).getQtdeVendida()
                         *  cadastro.get(x).listarItens().get(i).getProduto().getPreco();
+                
                 quantidade += cadastro.get(x).listarItens().get(i).getQtdeVendida();
                 modTblPedido.addRow(linha);
             }
@@ -572,24 +599,37 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
 
     private void btnProcurarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarClienteActionPerformed
         for(posCliente = 0; posCliente < cadCliVend.size(); posCliente++) {
-            if(cadCliVend.get(posCliente).getCpf() == txtCpfCliente.getText())
+            if(cadCliVend.get(posCliente).getCpf().equals(txtCpfCliente.getText()))
+            {
+                txtNomeCliente.setText(cadCliVend.get(posCliente).getNome());
+                txtCpfCliente.setEnabled(false);
+                btnProcurarCliente.setEnabled(false);
+                txtCpfVendedor.setEnabled(true);
+                btnProcurarVendedor.setEnabled(true);
                 break;
-            if(posCliente == cadCliVend.size()){
+            }
+                
+            if(posCliente == cadCliVend.size() -1 ){
                 JOptionPane.showMessageDialog(this, "Cliente não cadastrado", "Erro cliente", 2);
                 txtCpfCliente.requestFocus();
                 return;
-            }
-                
+            }       
         }
-        
-            
     }//GEN-LAST:event_btnProcurarClienteActionPerformed
 
     private void btnProcurarVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarVendedorActionPerformed
         for(posVendedor = 0; posVendedor < cadCliVend.size(); posVendedor++) {
-            if(cadCliVend.get(posVendedor).getCpf() == txtCpfVendedor.getText())
+            if(cadCliVend.get(posVendedor).getCpf().equals(txtCpfVendedor.getText()))
+            {
+                txtCpfVendedor.setEnabled(false);
+                btnProcurarVendedor.setEnabled(false);
+                txtNomeVendedor.setText(cadCliVend.get(posVendedor).getNome());
+                txtCodProduto.setEnabled(true);
+                btnProcurarProduto.setEnabled(true);
                 break;
-            if(posVendedor == cadCliVend.size()){
+            }
+                
+             if(posVendedor == cadCliVend.size() -1 ){
                 JOptionPane.showMessageDialog(this, "Vendedor não cadastrado", "Erro vendedor", 2);
                 txtCpfVendedor.requestFocus();
                 return;
@@ -598,15 +638,64 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProcurarVendedorActionPerformed
 
     private void btnProcurarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarProdutoActionPerformed
-        // TODO add your handling code here:
+        for(posProduto = 0; posProduto < cadProduto.size(); posProduto++){
+            if (cadProduto.get(posProduto).getCodigo().equals(txtCodProduto.getText())) {
+                    btnAdd.setEnabled(true);
+                    btnRemover.setEnabled(true);
+                    txtNomeProduto.setText(cadProduto.get(posProduto).getDescricao());
+                    txtQtdVendida.setEnabled(true);
+                    
+                    break;
+            }
+            if(posProduto == cadProduto.size() -1 ){
+                JOptionPane.showMessageDialog(this, "Produto não cadastrado", "Erro produto", 2);
+                txtCodProduto.requestFocus();
+                return;
+            }
+        }
     }//GEN-LAST:event_btnProcurarProdutoActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        if(txtQtdVendida.getText().equals("0")){
+            JOptionPane.showMessageDialog(this, "Quantidade inválida", "Erro quantidade", 2);
+            txtQtdVendida.requestFocus();
+            return;
+        }   
+            
+        if(Integer.parseInt(txtQtdVendida.getText()) > cadProduto.get(posProduto).getQtdeEstoque()){
+            JOptionPane.showMessageDialog(this, "Estoque insuficiente", "Erro quantidade", 2);
+            txtQtdVendida.requestFocus();
+            return;
+        }
+        
+        Double total = 0.0;
+        total = cadProduto.get(posProduto).getPreco() * Integer.parseInt(txtQtdVendida.getText());
+        
+        if(total > ((Cliente)cadCliVend.get(posCliente)).getLimiteDisp()){
+            JOptionPane.showMessageDialog(this, "Saldo insuficiente", "Erro quantidade", 2);
+            txtQtdVendida.requestFocus();
+            return;
+        }
+        
+        ((Cliente)cadCliVend.get(posCliente)).setLimiteDisp(
+            ((Cliente)cadCliVend.get(posCliente)).getLimiteDisp()
+            - total
+        );
+        
+        String linha [] = {
+            String.valueOf(cadProduto.get(posProduto).getCodigo()),
+            String.valueOf(cadProduto.get(posProduto).getDescricao()),
+            String.valueOf(cadProduto.get(posProduto).getPreco()),
+            txtQtdVendida.getText(),
+            String.valueOf(total)
+        };
+            //terminar de por na tabela
+            //baixar quantidade do estoque
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        // TODO add your handling code here:
+        //restaurar quantidade e credito do cliente
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -629,10 +718,6 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         pedido.setDataPagto(String.valueOf(Calendar.DATE));
         pedido.setFormaPagto(formaPagamento.isSelected(rbtnAPrazo.getModel()));
         
-
-        
-
-        
         pedido.setCliente((Cliente)cadCliVend.get(posCliente));
         pedido.setVendedor((Vendedor)cadCliVend.get(posVendedor));
         
@@ -642,6 +727,24 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         
         cadastro.add(pedido);
     }//GEN-LAST:event_btnIncluirActionPerformed
+
+    private void txtDataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataFocusLost
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+        try{
+            format.setLenient(false);
+            Date data = format.parse(txtData.getText());
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Data errada", "Erro cliente", 2);
+        }
+        
+        
+    }//GEN-LAST:event_txtDataFocusLost
+
+    private void txtQtdVendidaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtdVendidaFocusLost
+
+    }//GEN-LAST:event_txtQtdVendidaFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -690,5 +793,5 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     private ArrayList<Produto> cadProduto;
     private int posPedido;
     private DefaultTableModel modTblPedido;
-    private int posCliente, posVendedor;
+    private int posCliente, posVendedor, posProduto;
 }
