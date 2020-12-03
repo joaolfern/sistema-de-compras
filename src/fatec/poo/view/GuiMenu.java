@@ -5,6 +5,7 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.model.ItemPedido;
 import fatec.poo.model.Pedido;
 import fatec.poo.model.Pessoa;
 import fatec.poo.model.Produto;
@@ -184,5 +185,4 @@ public class GuiMenu extends javax.swing.JFrame {
 private ArrayList<Pessoa> cadCliVend = new ArrayList<Pessoa>();
 private ArrayList<Produto> cadProd = new ArrayList<Produto>();
 private ArrayList<Pedido> cadPedido = new ArrayList<Pedido>();
-    
 }

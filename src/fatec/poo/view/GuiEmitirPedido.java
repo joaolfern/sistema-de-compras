@@ -6,6 +6,7 @@
 package fatec.poo.view;
 
 import fatec.poo.model.Cliente;
+import fatec.poo.model.ItemPedido;
 import fatec.poo.model.Pedido;
 import fatec.poo.model.Pessoa;
 import fatec.poo.model.Produto;
@@ -37,7 +38,8 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         this.cadCliVend = cadCliVend;
         this.cadProduto = cadProduto;
         this.cadastro = cadPedido;
-
+        this.cadItens = cadItens;
+        
         modTblPedido = (DefaultTableModel)tblPedidos.getModel();
     }
 
@@ -384,30 +386,18 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(btnProcurarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel7))
-                    .addComponent(btnAdd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(txtQtdVendida, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(btnRemover)
-                        .addGap(105, 105, 105))))
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1042, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(txtCodProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(btnProcurarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(txtQtdVendida, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(299, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel8)
@@ -418,6 +408,16 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtQtdItens, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAdd)
+                .addGap(18, 18, 18)
+                .addComponent(btnRemover)
+                .addGap(43, 43, 43))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,15 +436,14 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtValorTotalPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(txtQtdItens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel9)
+                    .addComponent(txtQtdItens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(89, 89, 89))
         );
 
@@ -606,6 +605,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 btnProcurarCliente.setEnabled(false);
                 txtCpfVendedor.setEnabled(true);
                 btnProcurarVendedor.setEnabled(true);
+                txtCpfVendedor.requestFocus();
                 break;
             }
                 
@@ -626,6 +626,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 txtNomeVendedor.setText(cadCliVend.get(posVendedor).getNome());
                 txtCodProduto.setEnabled(true);
                 btnProcurarProduto.setEnabled(true);
+                txtCodProduto.requestFocus();
                 break;
             }
                 
@@ -644,7 +645,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                     btnRemover.setEnabled(true);
                     txtNomeProduto.setText(cadProduto.get(posProduto).getDescricao());
                     txtQtdVendida.setEnabled(true);
-                    
+                    txtQtdVendida.requestFocus();
                     break;
             }
             if(posProduto == cadProduto.size() -1 ){
@@ -700,29 +701,42 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         qtdPedido += quantidade;
         txtValorTotalPedido.setText(String.valueOf(totalPedido));
         txtQtdItens.setText(String.valueOf(qtdPedido));
+        
+        ItemPedido item = new ItemPedido(
+            modTblPedido.getRowCount() - 1,
+            Integer.parseInt(txtQtdVendida.getText()),
+            cadProduto.get(posProduto)                
+        );
+        
+        
+        
+        cadItens.add(item);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         int rowToBeRemoved = tblPedidos.getSelectedRow();
         int posProduto;
-        
+        int posItem;
         if(rowToBeRemoved < 0)
             JOptionPane.showMessageDialog(this, "Item não selecionado", "Erro de remoção", 2);
         else {
-            int qtdVendida = Integer.parseInt(modTblPedido.getValueAt(rowToBeRemoved, 3).toString());
-            double subtotal = Double.parseDouble(modTblPedido.getValueAt(rowToBeRemoved, 4).toString());
-            
-            String numPedido = modTblPedido.getValueAt(rowToBeRemoved, 0).toString();
-            
-            for(posProduto = 0; posProduto < cadProduto.size(); posProduto++){
-                if(cadProduto.get(posProduto).getCodigo() == numPedido)
-                break;
+            for(posItem = 0; posItem < cadItens.size(); posItem++){
+                if(cadItens.get(posItem).getSequencia() == rowToBeRemoved)
+                    break;
             }
             
-            cadProduto.get(posProduto).setQtdeEstoque(
-                cadProduto.get(posProduto).getQtdeEstoque()
+            double qtdVendida = cadItens.get(posItem).getQtdeVendida();
+            
+            double subtotal =
+                cadItens.get(posItem).getProduto().getPreco()
+                * cadItens.get(posItem).getQtdeVendida();
+         
+            cadItens.get(posItem).getProduto().setQtdeEstoque(
+                cadItens.get(posItem).getProduto().getQtdeEstoque()
                 + qtdVendida
             );
+            
+            JOptionPane.showMessageDialog(this, cadItens.get(posItem).getProduto().getQtdeEstoque() , "Erro de remoção", 2);
             
             ((Cliente)cadCliVend.get(posCliente)).setLimiteDisp(
                 ((Cliente)cadCliVend.get(posCliente)).getLimiteDisp()
@@ -762,15 +776,14 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         pedido.setCliente((Cliente)cadCliVend.get(posCliente));
         pedido.setVendedor((Vendedor)cadCliVend.get(posVendedor));
         
-        txtNomeCliente.setText(cadCliVend.get(posCliente).getNome());
-        txtNomeVendedor.setText(cadCliVend.get(posVendedor).getNome());
+        pedido.addItens(cadItens);
         //adicionar pedido e vendendor
         
         ((Vendedor)cadCliVend.get(posVendedor)).setSalarioBase(
             ((Vendedor)cadCliVend.get(posVendedor)).getTaxaComissao()
             * totalPedido
         );
-        
+
         cadastro.add(pedido);
     }//GEN-LAST:event_btnIncluirActionPerformed
 
@@ -837,6 +850,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     private ArrayList<Pedido> cadastro;
     private ArrayList<Pessoa> cadCliVend;
     private ArrayList<Produto> cadProduto;
+    private ArrayList<ItemPedido> cadItens = new ArrayList<ItemPedido>();
     private int posPedido;
     private DefaultTableModel modTblPedido;
     private int posCliente, posVendedor, posProduto;

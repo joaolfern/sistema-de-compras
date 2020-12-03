@@ -24,26 +24,9 @@ public class Pedido {
         cliente.addPedido(this);
     }
 
-    public void addItem(ItemPedido item) {
-        double valorItem = item.getProduto().getPreco() * item.getQtdeVendida();
-        if(valorItem <= cliente.getLimiteDisp()){
-            itens.add(item);
-            cliente.setLimiteDisp(cliente.getLimiteDisp() - valorItem);
-            total += valorItem;
-        }
+    public void addItens(ArrayList<ItemPedido> itens) {
+        this.itens.addAll(itens);
     }
-    
-    /*acrescentei isso
-    public void addItem(ItemPedido itemPedido){
-        itens.add(itemPedido);
-        itemPedido.setPedido(this);
-        
-        if(this.getSituacao()) {
-           double limiteAtual = cliente.getLimiteDisp();
-           cliente.setLimiteDisp(limiteAtual - itemPedido.getQtdeVendida() * itemPedido.getProduto().getPreco());
-        }
-        
-    }*/
     
     public ArrayList<ItemPedido> listarItens(){
         return itens;
