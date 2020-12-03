@@ -43,6 +43,7 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuPedidos = new javax.swing.JMenu();
         jMenuItemEmitirPedido = new javax.swing.JMenuItem();
+        jMenuItemConsultar = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -96,6 +97,14 @@ public class GuiMenu extends javax.swing.JFrame {
         });
         jMenuPedidos.add(jMenuItemEmitirPedido);
 
+        jMenuItemConsultar.setText("Consultar Cliente x Pedidos");
+        jMenuItemConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConsultarActionPerformed(evt);
+            }
+        });
+        jMenuPedidos.add(jMenuItemConsultar);
+
         jMenuBar1.add(jMenuPedidos);
 
         setJMenuBar(jMenuBar1);
@@ -133,6 +142,10 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jMenuItemEmitirPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEmitirPedidoActionPerformed
         new GuiEmitirPedido(cadPedido, cadCliVend, cadProd).setVisible(true);
     }//GEN-LAST:event_jMenuItemEmitirPedidoActionPerformed
+
+    private void jMenuItemConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConsultarActionPerformed
+        new GuiConsultaClientePedido(cadCliVend).setVisible(true);
+    }//GEN-LAST:event_jMenuItemConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,6 +188,7 @@ public class GuiMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuCadastros;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemConsultar;
     private javax.swing.JMenuItem jMenuItemEmitirPedido;
     private javax.swing.JMenuItem jMenuItemProdutos;
     private javax.swing.JMenuItem jMenuItemSair;

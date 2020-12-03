@@ -66,10 +66,6 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         btnIncluir.setEnabled(false);
     }
     
-    private void prepararNovoPedido(){
-        txtNumPedido.setEnabled(rootPaneCheckingEnabled);
-    }
-    
     private void novo(){
         txtCodProduto.setEnabled(false);
         txtCpfCliente.setEnabled(false);
