@@ -91,6 +91,11 @@ public class GuiProduto extends javax.swing.JFrame {
         jLabel5.setText("Estoque Mínimo");
 
         txtEstoqueMin.setEnabled(false);
+        txtEstoqueMin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEstoqueMinFocusLost(evt);
+            }
+        });
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Eraser.png"))); // NOI18N
         btnExcluir.setText("Excluir");
@@ -292,6 +297,12 @@ public class GuiProduto extends javax.swing.JFrame {
         prepararNovaEntrada();
     }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtEstoqueMinFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstoqueMinFocusLost
+        if(Double.parseDouble(txtEstoqueMin.getText()) > Double.parseDouble(txtQtdDisponivel.getText())){
+              JOptionPane.showMessageDialog(this, "Quantidade disponível menor que estoque mínimo", "Erro quantidade", 2);
+        }
+    }//GEN-LAST:event_txtEstoqueMinFocusLost
 
     /**
      * @param args the command line arguments

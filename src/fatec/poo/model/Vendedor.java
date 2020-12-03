@@ -13,11 +13,6 @@ public class Vendedor extends Pessoa {
         this.salarioBase = salarioBase;
         this.pedidos = new ArrayList<Pedido>();
     }
-
-    public void addPedido(Pedido pedido){
-        pedidos.add(pedido);
-        pedido.setVendedor(this);
-    }
     
     public double getSalarioBase() {
         return salarioBase;

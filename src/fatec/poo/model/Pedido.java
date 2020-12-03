@@ -19,9 +19,6 @@ public class Pedido {
         this.dataEmissao = dataEmissao;
         this.itens = new ArrayList<ItemPedido>();
         this.total = 0;
-        
-        vendedor.addPedido(this);
-        cliente.addPedido(this);
     }
 
     public void addItens(ArrayList<ItemPedido> itens) {
@@ -82,9 +79,11 @@ public class Pedido {
 
     public void setVendedor(Vendedor vendedor) {
         this.vendedor = vendedor;
+        vendedor.addPedido(this);
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+        cliente.addPedido(this);
     }
 }

@@ -92,14 +92,8 @@ public class Pessoa {
         pedidos.add(pedido);
     }
 
-    public String listarPedido() {
-        String list = "";
-
-        for (int i = 0; i < pedidos.size(); i++) {
-            list = list + " " + pedidos.get(i).getNumero();
-        }
-
-        return list;
+    public ArrayList<Pedido> listarPedido() {
+        return pedidos;
     }
 
     public static boolean validarCPF(String CPF) {

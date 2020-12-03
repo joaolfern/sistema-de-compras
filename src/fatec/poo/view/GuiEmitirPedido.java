@@ -69,6 +69,73 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     private void prepararNovoPedido(){
         txtNumPedido.setEnabled(rootPaneCheckingEnabled);
     }
+    
+    private void novo(){
+        txtCodProduto.setEnabled(false);
+        txtCpfCliente.setEnabled(false);
+        txtCpfVendedor.setEnabled(false);
+        txtData.setEnabled(false);
+        txtNomeCliente.setEnabled(false);
+        txtNomeProduto.setEnabled(false);
+        txtNomeVendedor.setEnabled(false);
+        txtQtdItens.setEnabled(false);
+        txtQtdVendida.setEnabled(false);
+        txtValorTotalPedido.setEnabled(false);
+        txtNumPedido.setEnabled(true);
+        
+        txtCodProduto.setText(null);
+        txtCpfCliente.setText(null);
+        txtCpfVendedor.setText(null);
+        txtData.setText(null);
+        txtNomeCliente.setText(null);
+        txtNomeProduto.setText(null);
+        txtNomeVendedor.setText(null);
+        txtNumPedido.setText(null);
+        txtQtdItens.setText(null);
+        txtQtdVendida.setText(null);
+        txtValorTotalPedido.setText(null);
+        
+        rbtnAPrazo.setSelected(false);
+        rbtnAVista.setSelected(false);
+        
+        modTblPedido.setRowCount(0);
+        
+        btnAdd.setEnabled(false);
+        btnRemover.setEnabled(false);
+        btnProcurarCliente.setEnabled(false);
+        btnProcurarPedido.setEnabled(true);
+        btnProcurarProduto.setEnabled(false);
+        btnProcurarVendedor.setEnabled(false);
+        
+        rbtnAPrazo.setEnabled(false);
+        rbtnAVista.setEnabled(false);
+        
+        tblPedidos.setEnabled(false);
+    }
+    
+    public void desabilitar(){
+        txtCodProduto.setEnabled(false);
+        txtCpfCliente.setEnabled(false);
+        txtCpfVendedor.setEnabled(false);
+        txtData.setEnabled(false);
+        txtNomeCliente.setEnabled(false);
+        txtNomeProduto.setEnabled(false);
+        txtNomeVendedor.setEnabled(false);
+        txtQtdItens.setEnabled(false);
+        txtQtdVendida.setEnabled(false);
+        txtValorTotalPedido.setEnabled(false);
+        txtNumPedido.setEnabled(false);
+        tblPedidos.setEnabled(false);
+        rbtnAPrazo.setEnabled(false);
+        rbtnAVista.setEnabled(false);
+        
+        btnAdd.setEnabled(false);
+        btnRemover.setEnabled(false);
+        btnProcurarCliente.setEnabled(false);
+        btnProcurarPedido.setEnabled(false);
+        btnProcurarProduto.setEnabled(false);
+        btnProcurarVendedor.setEnabled(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -121,6 +188,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pedido"));
+        jPanel1.setName(""); // NOI18N
 
         jLabel1.setText("Número de Pedido");
 
@@ -333,6 +401,11 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 txtQtdVendidaFocusLost(evt);
             }
         });
+        txtQtdVendida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQtdVendidaActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Valor total do pedido");
 
@@ -529,22 +602,13 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcurarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarPedidoActionPerformed
-        try{
-            Integer.parseInt(txtNumPedido.getText());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Número de pedido inválido");
-            txtNumPedido.setText(null);
-            txtNumPedido.requestFocus();
-            return;
-        }
-        
         DecimalFormat formato = new DecimalFormat("#0.00");
         double total = 0;
         int quantidade = 0;
         
         int x;
         for (x = 0; x < cadastro.size(); x++) {
-            if (cadastro.get(x).getNumero().equals(txtCodProduto.getText())) {
+            if (cadastro.get(x).getNumero().equals(txtNumPedido.getText())) {
                 break;
             }
         }
@@ -559,6 +623,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         
         if(posPedido >= 0){
             preperarPedidoExistente();
+            desabilitar();
             txtData.setText(cadastro.get(posPedido).getDataEmissao());
             if(cadastro.get(posPedido).isFormaPagto()){
                 rbtnAVista.setSelected(true);
@@ -591,9 +656,6 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
             txtValorTotalPedido.setText(formato.format(total));
             txtQtdItens.setText(String.valueOf(quantidade));
         }
-        else if(posPedido < 0){
-            
-    }
     }//GEN-LAST:event_btnProcurarPedidoActionPerformed
 
     private void btnProcurarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarClienteActionPerformed
@@ -627,6 +689,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 txtCodProduto.setEnabled(true);
                 btnProcurarProduto.setEnabled(true);
                 txtCodProduto.requestFocus();
+                btnIncluir.setEnabled(true);
                 break;
             }
                 
@@ -664,6 +727,12 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         }   
             
         if(Integer.parseInt(txtQtdVendida.getText()) > cadProduto.get(posProduto).getQtdeEstoque()){
+            JOptionPane.showMessageDialog(this, "Estoque insuficiente", "Erro quantidade", 2);
+            txtQtdVendida.requestFocus();
+            return;
+        }
+        
+        if(Integer.parseInt(txtQtdVendida.getText()) > cadProduto.get(posProduto).getQtdeEstoque() - cadProduto.get(posProduto).getEstoqueMinimo()){
             JOptionPane.showMessageDialog(this, "Estoque insuficiente", "Erro quantidade", 2);
             txtQtdVendida.requestFocus();
             return;
@@ -736,8 +805,6 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
                 + qtdVendida
             );
             
-            JOptionPane.showMessageDialog(this, cadItens.get(posItem).getProduto().getQtdeEstoque() , "Erro de remoção", 2);
-            
             ((Cliente)cadCliVend.get(posCliente)).setLimiteDisp(
                 ((Cliente)cadCliVend.get(posCliente)).getLimiteDisp()
                 + subtotal
@@ -766,7 +833,6 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-
         Pedido pedido = new Pedido(txtNumPedido.getText(), txtData.getText());
         
         pedido.setDataEmissao(txtData.getText());
@@ -775,6 +841,7 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         
         pedido.setCliente((Cliente)cadCliVend.get(posCliente));
         pedido.setVendedor((Vendedor)cadCliVend.get(posVendedor));
+        pedido.setSituacao(true);
         
         pedido.addItens(cadItens);
         //adicionar pedido e vendendor
@@ -785,6 +852,8 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
         );
 
         cadastro.add(pedido);
+        
+        novo();
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void txtDataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataFocusLost
@@ -804,6 +873,10 @@ public class GuiEmitirPedido extends javax.swing.JFrame {
     private void txtQtdVendidaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtQtdVendidaFocusLost
 
     }//GEN-LAST:event_txtQtdVendidaFocusLost
+
+    private void txtQtdVendidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtdVendidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQtdVendidaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

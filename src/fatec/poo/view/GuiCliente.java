@@ -43,7 +43,6 @@ public class GuiCliente extends javax.swing.JFrame {
         txtDDD.setEnabled(false);
         txtEndereco.setEnabled(false);
         txtLimiteCred.setEnabled(false);
-        txtLimiteDisp.setEnabled(false);
         txtTelefone.setEnabled(false);
         cbxUf.setEnabled(false);
         
@@ -133,6 +132,11 @@ public class GuiCliente extends javax.swing.JFrame {
         jLabel8.setText("Limite de Crédito");
 
         txtLimiteCred.setEnabled(false);
+        txtLimiteCred.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtLimiteCredFocusLost(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("Limite Disponível");
@@ -353,7 +357,6 @@ public class GuiCliente extends javax.swing.JFrame {
         txtTelefone.setEnabled(true);
         txtCep.setEnabled(true);
         txtLimiteCred.setEnabled(true);
-        txtLimiteDisp.setEnabled(true);
         cbxUf.setEnabled(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -400,6 +403,10 @@ public class GuiCliente extends javax.swing.JFrame {
         prepararNovaEntrada();
     }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void txtLimiteCredFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLimiteCredFocusLost
+        txtLimiteDisp.setText(txtLimiteCred.getText());
+    }//GEN-LAST:event_txtLimiteCredFocusLost
     
     /**
      * @param args the command line arguments
